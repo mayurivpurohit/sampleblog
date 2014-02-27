@@ -1,0 +1,42 @@
+<div class = "container" style = "padding-left : 20px">
+  <br/>
+<table border = "1">
+  <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Created At</th>
+    <th>counts</th>
+  </tr>
+  <tr>
+    <td><%= @post.title %></td>
+    <td><%= @post.content%></td>
+    <td><%= @post.created_at%></td>
+    <td> <%= @post.comments.count %></td>
+  </tr>
+</table>
+<br>
+<table><tr>
+  <td id = 'like_post'><%= submit_tag "Like", :id => "like"%>
+    <%= render 'likes/like_post', :post => @post %>
+    </td>
+  </tr></table>
+
+<h2>Comments</h2>
+<table>
+    <tr>
+      <th>Commenter's Name </th>
+      <th>Comment</th>
+      <th></th>
+    </tr>
+  <% @post.comments.each do |comments| %>
+      <tr>
+        <td><%= comments.commenter %></td>
+        <td><%= comments.comment %></td>
+        <td><%= link_to 'delete', [comments.post, comments],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+</table>
+</div>
+<%= render :partial => "comments/new" %>

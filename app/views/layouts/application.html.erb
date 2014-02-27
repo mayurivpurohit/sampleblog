@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "bootstrap", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id = "container">
+ <div id = "user_nav">
+  <% if user_signed_in? %>
+    Hi <%= current_user.email %>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete %>&nbsp;&nbsp;
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path %> &nbsp;|&nbsp;
+    <%= link_to "Sign in", new_user_session_path %>&nbsp;&nbsp;
+  <% end %>
+ </div>
+</div>
+<% flash.each do |key, value| %>
+  <p><%= value %></p>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

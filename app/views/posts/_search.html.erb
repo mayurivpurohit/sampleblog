@@ -1,0 +1,11 @@
+<h3>Search</h3>
+<!-- <form  mehtod "post" action = ''>
+  <p><input type="text" name= "search_text" id ='search_text' > <br/>
+      <input type="submit" name= "search" id ='search' value= 'search' ></p>
+    </form> -->
+  <%= form_tag posts_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search_title, params[:search_title] %><br/>
+    <%= submit_tag "Search", :name => nil, :class => 'btn' %>
+  </p>
+<% end %>

@@ -1,0 +1,21 @@
+<div class = "container">
+  <%= render :partial => "search" %>
+  <h1>Blog</h1>
+  <table class = "tab">
+    <tr>
+      <th>Title</th>
+    </tr>
+    <% @posts.each do |post| %>
+      <tr>
+         <td><%= post.title %></td>
+         <td><%= link_to "Read", post %></td>
+         <td><%= link_to "edit", edit_post_path(post) %></td>
+         <td><%= link_to "Delete", post, :confirm => "Are you sure to delete", :method => :delete %>
+         </td>
+      </tr>
+    <% end %>
+  </table>
+  <p><%= link_to "Create Post", new_post_path %></p>
+  <%= will_paginate @posts %>
+</div>
+
