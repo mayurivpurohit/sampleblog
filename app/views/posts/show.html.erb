@@ -1,42 +1,48 @@
-<div class = "container" style = "padding-left : 20px">
-  <br/>
-<table border = "1">
+<div class = "container">
+<br/>
+<table class = 'table table-bordered'>
+ <thead>
   <tr>
     <th>Title</th>
     <th>Content</th>
     <th>Created At</th>
     <th>counts</th>
   </tr>
+</thead>
+<tbody>
   <tr>
     <td><%= @post.title %></td>
     <td><%= @post.content%></td>
     <td><%= @post.created_at%></td>
     <td> <%= @post.comments.count %></td>
   </tr>
+ </tbody>
 </table>
 <br>
-<table><tr>
-  <td id = 'like_post'><%= submit_tag "Like", :id => "like"%>
+<%if current_user.present? %>
+  <div id = 'like_post'>
     <%= render 'likes/like_post', :post => @post %>
-    </td>
-  </tr></table>
+  </div>
+<% end %>
 
-<h2>Comments</h2>
-<table>
-    <tr>
-      <th>Commenter's Name </th>
-      <th>Comment</th>
-      <th></th>
-    </tr>
-  <% @post.comments.each do |comments| %>
+<%if @post.comments.present? %>
+  <h2>Comments</h2>
+  <table class = 'table table-bordered'>
+    <thead>
       <tr>
-        <td><%= comments.commenter %></td>
-        <td><%= comments.comment %></td>
-        <td><%= link_to 'delete', [comments.post, comments],
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %></td>
+        <th>Commenter's Name </th>
+        <th>Comment</th>
       </tr>
-  <% end %>
-</table>
-</div>
+    </thead>
+    <% @post.comments.each do |comments| %>
+      <tbody>
+        <tr>
+          <td><%= comments.commenter %></td>
+          <td><%= comments.comment %></td>
+          <td><%= link_to 'delete', [comments.post, comments], method: :delete, data: { confirm: 'Are you sure?'}, :class => 'btn btn-danger' %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+<% end %>
 <%= render :partial => "comments/new" %>

@@ -5,7 +5,7 @@ Blog::Application.routes.draw do
    resources :comments
   end
 
-  resources :like, :only => [:create, :destroy]
+  resources :likes, :only => [:create, :destroy]
 
   post 'search', to: 'posts#search', as: :search
   # The priority is based upon order of creation:

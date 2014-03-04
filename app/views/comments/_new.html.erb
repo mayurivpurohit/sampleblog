@@ -1,21 +1,20 @@
-<div class = "container" style = "padding-left : 20px">
-<h2>Add a comment:</h2>
+<h2>Post Comment:</h2>
 <%= form_for([@post, @post.comments.build]) do |f| %>
-  <p>
-    <%= f.label :commenter %><br />
-    <%= f.text_field :commenter %>
-  </p>
-  <p>
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+  <table class = 'table table-striped'>
+    <tboby>
+      <tr>
+        <th><%= f.label :Commenter %></th>
+        <td><%= f.text_field :commenter %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :Comment %></th>
+        <td><%= f.text_area :comment, :rows => 10, :cols => 5%></td>
+      </tr>
+      <tr>
+        <td><%= f.submit "Create", :class => 'btn btn-info'%></td>
+      </tr>
+    </tbody>
+  </table>
 <% end %>
-
-<%= link_to 'Edit Post', edit_post_path(@post) %> |
-<%= link_to 'Back to Posts', posts_path %> |
-<%= link_to "Create Post", new_post_path %>
-
-</div>
+<%= link_to 'Edit Post', edit_post_path(@post), :class => 'btn btn-primary' %> |
+<%= link_to 'Back to Posts', posts_path, :class => 'btn btn-primary' %>

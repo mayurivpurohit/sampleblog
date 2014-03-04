@@ -30,13 +30,13 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @posts = Post.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def update
-    @posts = Post.find(params[:id])
+    @post = Post.find(params[:id])
 
-    if @posts.update_attributes(params[:post])
+    if @post.update_attributes(params[:post])
       redirect_to posts_path, :notice => "Post updated succefully"
     else
       render "edit"

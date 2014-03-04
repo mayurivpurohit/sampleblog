@@ -4,21 +4,27 @@
   <title>Blog</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= stylesheet_link_tag    "bootstrap", :media => "all" %>
+  <%= stylesheet_link_tag    "bootstrap-override", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<div id = "container">
+<div id = "container span12" style ='padding-top : 20px; padding-left : 42px;'>
  <div id = "user_nav">
   <% if user_signed_in? %>
-    Hi <%= current_user.email %>
-    <%= link_to "Sign out", destroy_user_session_path, method: :delete %>&nbsp;&nbsp;
+    <div class=' pull-right'>
+   Hi&nbsp;&nbsp;<%= current_user.email %> | &nbsp;&nbsp;
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, :class => 'btn btn-info' %>&nbsp;&nbsp;
+    </div>
   <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> &nbsp;|&nbsp;
-    <%= link_to "Sign in", new_user_session_path %>&nbsp;&nbsp;
+    <div class= 'pull-right'>
+   <%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-info' %> &nbsp;|&nbsp;</span>
+  <%= link_to "Sign in", new_user_session_path, :class => 'btn btn-info' %>&nbsp;&nbsp;
+  </div>
   <% end %>
  </div>
+</br/>
 </div>
 <% flash.each do |key, value| %>
   <p><%= value %></p>
