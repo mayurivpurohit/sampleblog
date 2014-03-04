@@ -3,5 +3,6 @@ class Comment < ActiveRecord::Base
 
   attr_accessible :comment, :commenter,:post,:title
   validates_presence_of :comment ,:message => " Comment cannot be blank."
+  validates_presence_of :commenter ,:message => " Commenter cannot be blank."
   # attr_accessible :title, :body
 end
