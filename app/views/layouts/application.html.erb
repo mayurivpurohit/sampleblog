@@ -14,7 +14,11 @@
  <div id = "user_nav">
   <% if user_signed_in? %>
     <div class=' pull-right'>
-   Hi&nbsp;&nbsp;<%= current_user.email %> | &nbsp;&nbsp;
+      <% if current_user.first_name.present? %>
+        Hi&nbsp;&nbsp;<%= current_user.first_name %> | &nbsp;&nbsp;
+     <% else %>
+         Hi&nbsp;&nbsp;<%= current_user.email %> | &nbsp;&nbsp;
+     <% end %>
       <%= link_to "Sign out", destroy_user_session_path, method: :delete, :class => 'btn btn-info' %>&nbsp;&nbsp;
     </div>
   <% else %>
