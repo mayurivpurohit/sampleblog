@@ -3,8 +3,8 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:index ,:search]
   def index
     if params[:search_title]
-      @post = Post.find(:all, :conditions => ['title like ?',"%#{params[:search_title]}"])
-      redirect_to @post if @post.present?
+      @post = Post.find(:all, :conditions => ['title like ?',"%#{params[:search_title]}%"])
+       redirect_to @post if @post.present?
     else
       @post = Post.all
     end
@@ -17,11 +17,11 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    Rails.logger.debug "creating new post"
   end
 
   def create
     @post = Post.new(params[:post])
-
     if  @post.save
       redirect_to posts_path, :notice => "Successfully created post"
     else

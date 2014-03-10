@@ -4,12 +4,4 @@ class Post < ActiveRecord::Base
    validates_presence_of :title ,:message => " Title cannot be blank."
    validates_presence_of :content ,:message => " Content cannot be blank."
    has_many :likes
-
-   def self.search(search_title)
-      if search_title
-        find(:all, :conditions => ['name LIKE ?', "%#{search_title}%"])
-      else
-        find(:all)
-     end
-  end
 end
