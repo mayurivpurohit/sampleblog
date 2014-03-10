@@ -1,5 +1,5 @@
 <div class = "container">
-  <div class = 'span12'>
+  <div class = 'span12' style = "pad">
     <%= render :partial => "search" %>
   </div>
   <div class = 'span12'>
@@ -10,12 +10,14 @@
       <thead>
         <tr>
           <th>Title</th>
+          <th>Created By</th>
         </tr>
       </thead>
       <% @posts.each do |post| %>
         <tbody>
           <tr>
           <td><%= post.title %></td>
+          <td><%= post.user_id %></td>
           <td><%= link_to "Read", post, :class => 'btn btn-primary' %></td>
           <td><%= link_to "Update", edit_post_path(post), :class => 'btn btn-info' %></td>
           <td><%= link_to "Delete", post, :confirm => "Are you sure to delete", :method => :delete, :class => 'btn btn-danger' %></td>

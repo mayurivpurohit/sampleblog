@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140305114249) do
+ActiveRecord::Schema.define(:version => 20140306043604) do
 
   create_table "comments", :force => true do |t|
     t.integer  "post_id"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20140305114249) do
     t.string   "title"
     t.text     "content"
     t.integer  "is_like"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
