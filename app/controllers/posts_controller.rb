@@ -3,11 +3,12 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:index ,:search]
   def index
     if params[:search_title]
-      @post = Post.find(:all, :conditions => ['title like ?',"%#{params[:search_title]}%"])
+      @post = Post.find_by_title(params[:search_title])
        redirect_to @post if @post.present?
     else
       @post = Post.all
     end
+    # @post = Post.all
     @posts = Post.paginate :page => params[:page], :per_page => 3
   end
 
@@ -48,4 +49,12 @@ class PostsController < ApplicationController
     @posts.destroy
     redirect_to post_path, :notice => "Successfully deleted"
   end
+  # def search
+  #   if params[:search_title]
+  #     @post = Post.find_by_title(params[:search_title])
+  #      redirect_to @post if @post.present?
+  #   else
+  #     @post = Post.all
+  #   end
+  # end
 end
