@@ -10,16 +10,25 @@ class PostsController < ApplicationController
     end
     # @post = Post.all
     @posts = Post.paginate :page => params[:page], :per_page => 3
+    respond_to do |format|
+      format.html
+    end
   end
 
   def show
     @post = Post.find(params[:id])
     @user = User.find_by_id(@post.user_id)
+    respond_to do |format|
+      format.html
+    end
   end
 
   def new
     @post = Post.new
     Rails.logger.debug "creating new post"
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
@@ -28,6 +37,9 @@ class PostsController < ApplicationController
       redirect_to posts_path, :notice => "Successfully created post"
     else
       render "new"
+    end
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -43,12 +55,18 @@ class PostsController < ApplicationController
     else
       render "edit"
     end
+    respond_to do |format|
+      format.html
+    end
   end
 
   def destroy
     @posts = Post.find(params[:id])
     @posts.destroy
     redirect_to post_path, :notice => "Successfully deleted"
+    respond_to do |format|
+      format.html
+    end
   end
   # def search
   #   if params[:search_title]

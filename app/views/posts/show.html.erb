@@ -29,22 +29,24 @@
 
 <%if @post.comments.present? %>
   <h2>Comments</h2>
-  <table class = 'table table-bordered'>
+  <table class = 'table'>
     <thead>
       <tr>
         <th>Commenter's Name </th>
         <th>Comment</th>
       </tr>
     </thead>
-    <% @post.comments.each do |comments| %>
-      <tbody>
+     <tbody>
+       <% @post.comments.each do |comments| %>
         <tr>
           <td><%= comments.commenter %></td>
           <td><%= comments.comment %></td>
+          <% if @post.user_id == current_user.id or comments.user_id == current_user.id%>
           <td><%= link_to 'delete', [comments.post, comments], method: :delete, data: { confirm: 'Are you sure?'}, :class => 'btn btn-danger' %></td>
+          <% end %>
         </tr>
-      </tbody>
-    <% end %>
+      <% end %>
+    </tbody>
   </table>
 <% end %>
 <%= render :partial => "comments/new" %>

@@ -3,6 +3,7 @@
   <table class = 'table table-striped'>
     <tboby>
       <tr>
+        <%= f.hidden_field :user_id ,value: "#{current_user.id}" %>
         <th><%= f.label :Commenter %></th>
         <td><%= f.text_field :commenter, value: "#{current_user.first_name}" %></td>
       </tr>
