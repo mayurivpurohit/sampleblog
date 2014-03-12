@@ -23,7 +23,7 @@
 <br>
 <%if current_user.present? %>
   <div id = 'like_post'>
-    <%= render 'likes/like_post', :post => @post %>
+    <%= render :partial => 'likes/like_post', :post => @post %>
   </div>
 <% end %>
 
