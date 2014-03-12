@@ -14,12 +14,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @user= User.find_by_sql("SELECT users.id , users.first_name,users.last_name,posts.id, posts.title FROM `users` LEFT OUTER JOIN posts ON posts.user_id = users.id")
-    @user.each do |name|
-     @first_name = name.first_name
-     @last_name = name.last_name
-    end
-    Rails.logger.debug "--- #{@first_name} #{@last_name} ---"
+    @user = User.find_by_id(@post.user_id)
   end
 
   def new
