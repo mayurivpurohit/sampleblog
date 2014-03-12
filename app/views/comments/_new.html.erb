@@ -4,7 +4,7 @@
     <tboby>
       <tr>
         <th><%= f.label :Commenter %></th>
-        <td><%= f.text_field :commenter, value: "#{@first_name} #{@last_name}" %></td>
+        <td><%= f.text_field :commenter, value: "#{current_user.first_name}" %></td>
       </tr>
       <tr>
         <th><%= f.label :Comment %></th>
