@@ -30,6 +30,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     if  @post.save
+      Rails.logger.debug "-------------------"
+      PostMailer.create_post(@post).deliver
+      Rails.logger.debug "-------------------"
       redirect_to posts_path, :notice => "Successfully created post"
     else
       render "new"
