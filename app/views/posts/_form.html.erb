@@ -1,6 +1,6 @@
-  <%= form_for @post do |f|%>
+  <%= simple_form_for @post do |f|%>
   <%= f.hidden_field :user_id ,value: "#{current_user.id}" %>
-    <strong><%= f.label :title %></strong><%= f.text_field :title %>
-    <strong><%= f.label :content %></strong><%= f.text_area:content, :rows => 10, :cols => 5 %>
-     <br/><%= f.submit "Submit", :class => 'btn btn-primary' %>
+   <%= f.input :title %>
+   <%= f.input :content, :as => :text, input_html: { class: 'special' } %>
+     <br/><%= f.button :submit, :class => 'btn btn-primary' %>
   <% end %>
