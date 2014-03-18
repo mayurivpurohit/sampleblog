@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!, except: [:index ,:search]
+  before_filter :authenticate_user!, except: [:search]
   def index
     if params[:search_title]
       @post = Post.find_by_title(params[:search_title])
@@ -34,10 +34,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     if  @post.save
-      Rails.logger.debug "-------------------"
       PostMailer.create_post(@post).deliver
-      Rails.logger.debug "-------------------"
-      redirect_to posts_path, :notice => "Successfully created post"
+      respond_to do |format|
+        # redirect_to posts_path, :notice => "Successfully created post"
+        format.html{redirect_to posts_path, :notice => "Successfully created post"}
+      end
     else
       render "new"
     end
