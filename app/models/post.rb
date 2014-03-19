@@ -5,4 +5,14 @@ class Post < ActiveRecord::Base
    validates_presence_of :content ,:message => " Content cannot be blank."
    has_many :likes
    belongs_to :users
+
+  def name
+    [title, user_id].join(' ')
+  end
+
+  def self.by_letter(letter)
+    where("title LIKE ?", "#{letter}%")
+  end
+
+
 end
