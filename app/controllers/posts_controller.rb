@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!, except: [:index ,:search]
+  before_filter :authenticate_user!, except: [:search]
   def index
     if params[:search_title]
       @post = Post.find_by_title(params[:search_title])
